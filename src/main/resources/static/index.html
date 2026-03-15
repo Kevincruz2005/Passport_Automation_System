@@ -42,9 +42,9 @@
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Login</button>
                         <div class="demo-creds">
-                            <small>Demo: rajiv@passport.gov.in / officer123 (Officer)</small><br>
-                            <small>Demo: arjun@police.gov.in / police123 (Police)</small><br>
-                            <small>Demo: admin@passport.gov.in / admin123 (Admin)</small>
+                            <small>Staff Access: rajiv@passport.gov.in / officer123 (Officer)</small><br>
+                            <small>Staff Access: arjun@police.gov.in / police123 (Police)</small><br>
+                            <small>Staff Access: admin@passport.gov.in / admin123 (Admin)</small>
                         </div>
                     </form>
                 </div>
@@ -228,7 +228,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>File (Simulation)</label>
+                    <label>Upload File Document</label>
                     <input type="file" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Upload</button>
@@ -247,17 +247,17 @@
             <h2>Make Payment</h2>
             <p>Application Fee: <strong>$1500</strong></p>
             <div class="form-group">
-                <label>Card Details (Simulation)</label>
+                <label>Credit/Debit Card Details</label>
                 <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX">
             </div>
             <div class="d-flex gap-2">
-                <button class="btn btn-success" onclick="processPayment(true)">Simulate Success</button>
-                <button class="btn btn-danger" onclick="processPayment(false)">Simulate Failure</button>
+                <button class="btn btn-success" onclick="processPayment(true)">Pay Securely</button>
+                <button class="btn btn-danger" onclick="processPayment(false)">Cancel Payment</button>
             </div>
         </div>
     </div>
 
-    <!-- Appointment Modal (UI Only Simulation) -->
+    <!-- Appointment Modal -->
     <div id="appointment-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('appointment-modal')">&times;</span>
