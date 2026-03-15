@@ -1,0 +1,302 @@
+/* Base Styles & Variables */
+:root {
+    --primary-blue: #003580;
+    --primary-blue-hover: #002255;
+    --accent-gold: #ffd700;
+    --accent-gold-hover: #e6c200;
+    --bg-light: #f4f7f6;
+    --text-dark: #333;
+    --text-light: #fff;
+    --success: #28a745;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --border: #dee2e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+/* Typography & Utilities */
+h1, h2, h3, h4 { color: var(--primary-blue); }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.w-100 { width: 100%; }
+.d-flex { display: flex; }
+.gap-2 { gap: 0.5rem; }
+
+/* Navigation */
+.navbar {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-brand h1 {
+    color: var(--accent-gold);
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary { background: var(--primary-blue); color: white; }
+.btn-primary:hover { background: var(--primary-blue-hover); }
+
+.btn-secondary { background: var(--accent-gold); color: #000; }
+.btn-secondary:hover { background: var(--accent-gold-hover); }
+
+.btn-success { background: var(--success); color: white; }
+.btn-danger { background: var(--danger); color: white; }
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+}
+.btn-outline:hover {
+    background: var(--accent-gold);
+    color: var(--primary-blue);
+}
+
+/* Cards & Layout */
+#app-container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.view { display: none; }
+.view.active { display: block; animation: fadeIn 0.3s; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card, .auth-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Auth Section */
+.auth-card {
+    max-width: 450px;
+    margin: 2rem auto;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 0.8rem;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.tab-btn.active {
+    color: var(--primary-blue);
+    border-bottom: 3px solid var(--accent-gold);
+}
+
+.auth-form { display: none; }
+.auth-form.active { display: block; }
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+}
+
+.demo-creds {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    background: #e9ecef;
+    border-radius: 4px;
+    text-align: center;
+    color: #555;
+}
+
+/* Status Badges */
+.badge, .status-badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge {
+    background: var(--accent-gold);
+    color: #000;
+}
+
+.status-SUBMITTED { background: #17a2b8; color: white; }
+.status-DOCUMENTS_UPLOADED { background: #ffc107; color: #000; }
+.status-PAYMENT_CONFIRMED { background: #28a745; color: white; }
+.status-PAYMENT_FAILED { background: #dc3545; color: white; }
+.status-POLICE_VERIFICATION_PENDING { background: #fd7e14; color: white; }
+.status-POLICE_VERIFIED { background: #20c997; color: white; }
+.status-APPROVED { background: #007bff; color: white; }
+.status-PASSPORT_ISSUED { background: var(--primary-blue); color: var(--accent-gold); }
+.status-REJECTED { background: #343a40; color: white; }
+
+/* Tables */
+.table-responsive { overflow-x: auto; }
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table th {
+    background-color: #f8f9fa;
+    color: var(--primary-blue);
+}
+
+/* Timeline */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 1;
+}
+
+.timeline-step {
+    position: relative;
+    z-index: 2;
+    background: white;
+    padding: 0.5rem;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.timeline-step.completed {
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.timeline-step.active {
+    border-color: var(--primary-blue);
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* Admin Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 4px solid var(--primary-blue);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-card h3 { font-size: 2rem; margin: 0.5rem 0; color: var(--accent-gold); text-shadow: 1px 1px 1px rgba(0,0,0,0.1); }
+.stat-card p { font-size: 0.9rem; color: #666; font-weight: 600; }
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}

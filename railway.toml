@@ -1,0 +1,6 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "mvn clean package -DskipTests"
+
+[deploy]
+startCommand = "java -jar target/passport-system-1.0.0.jar"
