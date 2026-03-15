@@ -22,9 +22,11 @@ public class DocumentService {
         document.setVerificationStatus("PENDING");
         Document saved = documentRepository.save(document);
         
-        PassportApplication app = document.getApplication();
-        if (app != null && app.getStatus() == ApplicationStatus.SUBMITTED) {
-            applicationService.updateStatus(app.getApplicationID(), ApplicationStatus.DOCUMENTS_UPLOADED);
+        if (document.getApplication() != null) {
+            PassportApplication app = applicationService.getApplicationById(document.getApplication().getApplicationID());
+            if (app != null && app.getStatus() == ApplicationStatus.SUBMITTED) {
+                applicationService.updateStatus(app.getApplicationID(), ApplicationStatus.DOCUMENTS_UPLOADED);
+            }
         }
         return saved;
     }

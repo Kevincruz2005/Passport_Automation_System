@@ -208,8 +208,8 @@ async function handleDocUpload(e) {
             })
         });
         alert('Document uploaded successfully!');
-        loadApplicantDocs();
-        loadApplicantData(); // refresh status
+        closeModal('docs-modal');
+        await loadApplicantData(); // completely refresh state and UI
     } catch(err) { alert(err); }
 }
 
