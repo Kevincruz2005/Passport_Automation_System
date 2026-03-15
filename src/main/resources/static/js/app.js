@@ -249,9 +249,31 @@ async function viewMyPassport() {
         const res = await fetch(`${API}/passport/${currentApplication.applicationID}`);
         if(res.ok) {
             const passport = await res.json();
-            alert(`PASSPORT ISSUED!\n\nNo: ${passport.passportNumber}\nIssue: ${passport.issueDate}\nExpiry: ${passport.expiryDate}`);
+            
+            // Populate Passport Data
+            document.getElementById('pp-number').innerText = passport.passportNumber;
+            document.getElementById('pp-nationality').innerText = currentApplication.nationality || 'INDIAN';
+            document.getElementById('pp-name').innerText = currentUser.name;
+            document.getElementById('pp-dob').innerText = new Date(currentApplication.dob || currentUser.dob).toLocaleDateString();
+            document.getElementById('pp-issue').innerText = new Date(passport.issueDate).toLocaleDateString();
+            document.getElementById('pp-expiry').innerText = new Date(passport.expiryDate).toLocaleDateString();
+            document.getElementById('pp-address').innerText = currentApplication.address || currentUser.address;
+            
+            showModal('passport-modal');
         }
     } catch (err) { alert("Error fetching passport"); }
+}
+
+function downloadPassportPDF() {
+    const element = document.getElementById('passport-card');
+    const opt = {
+        margin:       0.5,
+        filename:     `Passport_${currentUser.name}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'landscape' }
+    };
+    html2pdf().set(opt).from(element).save();
 }
 
 // Passport Officer Functions
