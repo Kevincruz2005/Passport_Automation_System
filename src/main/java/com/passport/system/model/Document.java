@@ -1,6 +1,7 @@
 package com.passport.system.model;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "documents")
@@ -13,10 +14,21 @@ public class Document {
     @JoinColumn(name = "application_id", nullable = false)
     private PassportApplication application;
 
-    private String documentType; 
-    
-    private String verificationStatus; // PENDING, VERIFIED, REJECTED
-    
+    private String documentType;        // IDENTITY_PROOF, ADDRESS_PROOF, DOB_PROOF
+
+    private String verificationStatus;  // PENDING, VERIFIED, REJECTED
+
+    // ---- Real file storage fields ----
+    private String fileName;            // original filename e.g. "aadhar.pdf"
+    private String contentType;         // MIME type e.g. "application/pdf", "image/jpeg"
+
+    @Lob
+    @Column(name = "file_data", columnDefinition = "BYTEA")
+    private byte[] fileData;            // actual file bytes stored in PostgreSQL
+
+    private LocalDateTime uploadedAt;   // timestamp of upload
+
+    // Getters & Setters
     public Long getDocumentID() { return documentID; }
     public void setDocumentID(Long documentID) { this.documentID = documentID; }
 
@@ -28,4 +40,17 @@ public class Document {
 
     public String getVerificationStatus() { return verificationStatus; }
     public void setVerificationStatus(String verificationStatus) { this.verificationStatus = verificationStatus; }
+
+    public String getFileName() { return fileName; }
+    public void setFileName(String fileName) { this.fileName = fileName; }
+
+    public String getContentType() { return contentType; }
+    public void setContentType(String contentType) { this.contentType = contentType; }
+
+    public byte[] getFileData() { return fileData; }
+    public void setFileData(byte[] fileData) { this.fileData = fileData; }
+
+    public LocalDateTime getUploadedAt() { return uploadedAt; }
+    public void setUploadedAt(LocalDateTime uploadedAt) { this.uploadedAt = uploadedAt; }
 }
+
