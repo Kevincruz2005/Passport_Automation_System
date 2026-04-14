@@ -12,9 +12,19 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class DocumentService {
+
+    // Allowed MIME types — enforced server-side (cannot be bypassed like the frontend filter)
+    private static final Set<String> ALLOWED_TYPES = Set.of(
+        "application/pdf",
+        "image/jpeg",
+        "image/png",
+        "image/tiff",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" // .docx
+    );
 
     @Autowired
     private DocumentRepository documentRepository;
@@ -28,6 +38,15 @@ public class DocumentService {
      * Triggers the application status bump from SUBMITTED to DOCUMENTS_UPLOADED.
      */
     public Document uploadDocument(Long applicationId, String documentType, MultipartFile file) throws IOException {
+        // Validate MIME type before touching the database
+        String mimeType = file.getContentType();
+        if (mimeType == null || !ALLOWED_TYPES.contains(mimeType)) {
+            throw new IllegalArgumentException(
+                "Unsupported file type: " + mimeType +
+                ". Allowed formats: PDF, JPG, PNG, TIFF, DOCX"
+            );
+        }
+
         PassportApplication app = applicationService.getApplicationById(applicationId);
 
         Document document = new Document();

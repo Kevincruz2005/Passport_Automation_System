@@ -22,7 +22,6 @@ public class Document {
     private String fileName;            // original filename e.g. "aadhar.pdf"
     private String contentType;         // MIME type e.g. "application/pdf", "image/jpeg"
 
-    @Lob
     @Column(name = "file_data", columnDefinition = "BYTEA")
     private byte[] fileData;            // actual file bytes stored in PostgreSQL
 
